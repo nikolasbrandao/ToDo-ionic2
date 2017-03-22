@@ -1,16 +1,26 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Atividades
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <ion-item *ngFor="let atividade of atividades">
+    
+    <ion-card>
+      <ion-card-header>
+        {{atividade.titulo}}
+      </ion-card-header>
+      <ion-card-content>
+        {{atividade.texto}}
+      </ion-card-content>
+    </ion-card>
+
+  </ion-item>
+
 
   <ion-fab right bottom>
     <button ion-fab color="light" (click)="createTask()">

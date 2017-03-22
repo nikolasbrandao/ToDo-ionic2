@@ -10,10 +10,20 @@ import { AddTaskPage } from '../add-task/add-task';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-    
-  }
+  atividades:any;
 
+  constructor(public navCtrl: NavController) {
+
+  this.atividades = [
+    {
+      titulo:'teste1', texto:'lorem ipsum'
+    },
+    {
+      titulo:'teste2',texto:'lorem ipsum dolor'
+    }];
+
+  }
+ 
   createTask(){
     this.navCtrl.push(AddTaskPage);
   }
