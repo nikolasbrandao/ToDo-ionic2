@@ -16,10 +16,10 @@ export class HomePage {
 
   this.atividades = [
     {
-      titulo:'teste1', texto:'lorem ipsum'
+      titulo:'teste1', texto:'lorem ipsum', data: '22/11/2017', horario: '16:04'
     },
     {
-      titulo:'teste2',texto:'lorem ipsum dolor'
+      titulo:'teste2',texto:'lorem ipsum dolor', data: '10/06/2017', horario: '11:55'
     }];
 
   }
