@@ -13,10 +13,26 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class AddTaskPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  public titulo: String;
+  public texto: String;
+  public data: String; 
+  public horario: String;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddTaskPage');
+  }
+
+  adiciona(){
+
+    console.log(this.titulo);
+    console.log(this.texto);
+    console.log(this.data);
+    console.log(this.horario);
+
+    this.navCtrl.pop();
   }
 
 }

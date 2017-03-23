@@ -12,23 +12,23 @@
 
     <ion-item>
       <ion-label floating>Titulo</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="titulo"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Texto da nota</ion-label>
-      <ion-textarea type="text"></ion-textarea>
+      <ion-textarea type="text" [(ngModel)]="texto"></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Data do lembrete</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" min="01/01/2017" max="31/12/2018"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="data"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label floating>Horario</ion-label>
-      <ion-datetime displayFormat="HH:mm"></ion-datetime>
+      <ion-datetime displayFormat="HH:mm" [(ngModel)]="horario"></ion-datetime>
     </ion-item>
-    <button ion-button round>Adicionar</button>
+    <button ion-button round (click)="adiciona()">Adicionar</button>
   </ion-list>
 
 </ion-content>
