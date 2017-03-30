@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage'
 
 import { AddTaskPage } from '../add-task/add-task';
 
@@ -10,22 +10,38 @@ import { AddTaskPage } from '../add-task/add-task';
 })
 export class HomePage {
 
-  atividades:any;
+  atividades: JSON;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public storage: Storage) {
 
-  this.atividades = [
-    {
-      titulo:'teste1', texto:'lorem ipsum', data: '22/11/2017', horario: '16:04'
-    },
-    {
-      titulo:'teste2',texto:'lorem ipsum dolor', data: '10/06/2017', horario: '11:55'
-    }];
+  this.obterAtividades().then(val=>{
+    console.log('valor recuperado:');
+    console.log(val);
+  });
+  
+
 
   }
- 
-  createTask(){
+
+  createTask() {
     this.navCtrl.push(AddTaskPage);
+  }
+
+  obterAtividades(){
+    return new Promise((resolve,reject)=>{ 
+      let atividades:Array<any>;
+
+      this.storage.forEach((val, key, number)=>{
+          if(key.includes('tarefa')){
+          console.log(val);
+          console.log(key);
+          console.log(number);
+
+          atividades.push(val);
+          }
+          resolve(atividades);
+      });    
+    });
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the AddTask page.
@@ -7,6 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
 @Component({
   selector: 'page-add-task',
   templateUrl: 'add-task.html'
@@ -17,8 +19,9 @@ export class AddTaskPage {
   public texto: String;
   public data: String; 
   public horario: String;
+  public tarefa:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -27,10 +30,18 @@ export class AddTaskPage {
 
   adiciona(){
 
-    console.log(this.titulo);
-    console.log(this.texto);
-    console.log(this.data);
-    console.log(this.horario);
+    this.tarefa = {
+      titulo: this.titulo,
+      texto: this.texto,
+      data: this.data,
+      horario: this.horario
+    }
+    
+    let quantidade = this.storage.length();
+    console.log(quantidade);
+    this.storage.ready().then(()=> {
+      this.storage.set('tarefa',this.tarefa);
+    });
 
     this.navCtrl.pop();
   }
