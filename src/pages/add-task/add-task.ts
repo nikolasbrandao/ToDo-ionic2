@@ -36,10 +36,12 @@ export class AddTaskPage {
       data: this.data,
       horario: this.horario
     }
-    
-    let quantidade = this.storage.length();
-    console.log(quantidade);
-    this.storage.ready().then(()=> {
+
+    this.storage.get('tarefa').then(()=>{
+      this.tarefa.
+    });
+
+    this.storage.ready().then(()=> {  
       this.storage.set('tarefa',this.tarefa);
     });
 

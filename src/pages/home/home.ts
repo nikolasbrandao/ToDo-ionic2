@@ -29,10 +29,11 @@ export class HomePage {
 
   obterAtividades(){
     return new Promise((resolve,reject)=>{ 
-      let atividades:Array<any>;
+      let atividades = new Array<String>();
 
       this.storage.forEach((val, key, number)=>{
           if(key.includes('tarefa')){
+          console.log('valores do for each:');
           console.log(val);
           console.log(key);
           console.log(number);
