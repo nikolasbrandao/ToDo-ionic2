@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Tarefa } from '../../models/tarefa';
 
 /*
   Generated class for the AddTask page.
@@ -15,36 +16,41 @@ import { Storage } from '@ionic/storage';
 })
 export class AddTaskPage {
 
-  public titulo: String;
-  public texto: String;
-  public data: String; 
-  public horario: String;
-  public tarefa:any;
+  public tarefas: Array<Tarefa>;
+
+  titulo: string;
+  texto: string;
+  data: string;
+  horario: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    this.tarefas = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddTaskPage');
   }
 
-  adiciona(){
+  adiciona() {
 
-    this.tarefa = {
-      titulo: this.titulo,
-      texto: this.texto,
-      data: this.data,
-      horario: this.horario
-    }
+    this.storage.get('tarefas').then((val: Array<Tarefa>) => {
+      if (val.length != 0) {
+        console.log('Puxou:');
+        console.log(val);
+        this.tarefas = val;
+      }
+      else {
+        console.log("vazio");
+      }
+      
+      this.storage.ready().then(() => {
+        let novaTarefa: Tarefa = new Tarefa(this.titulo, this.texto, this.data, this.horario);
+        this.tarefas.push(novaTarefa);
+        console.log('Enviou')
+        this.storage.set('tarefas', this.tarefas);
+      });
 
-    this.storage.get('tarefa').then(()=>{
-      this.tarefa.
     });
-
-    this.storage.ready().then(()=> {  
-      this.storage.set('tarefa',this.tarefa);
-    });
-
     this.navCtrl.pop();
   }
 

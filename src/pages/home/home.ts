@@ -4,44 +4,38 @@ import { Storage } from '@ionic/storage'
 
 import { AddTaskPage } from '../add-task/add-task';
 
+import { Tarefa } from '../../models/tarefa';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  atividades: JSON;
+  atividades: Array<Tarefa>;
 
   constructor(public navCtrl: NavController, public storage: Storage) {
 
-  this.obterAtividades().then(val=>{
-    console.log('valor recuperado:');
-    console.log(val);
-  });
-  
+    this.obterAtividades().then((val:Array<Tarefa>) => {
+      this.atividades = val;
+    });
+  }
 
-
+  ionViewWillEnter(){
+    this.obterAtividades().then((val:Array<Tarefa>) => {
+      this.atividades = val;
+    });
   }
 
   createTask() {
     this.navCtrl.push(AddTaskPage);
   }
 
-  obterAtividades(){
-    return new Promise((resolve,reject)=>{ 
-      let atividades = new Array<String>();
-
-      this.storage.forEach((val, key, number)=>{
-          if(key.includes('tarefa')){
-          console.log('valores do for each:');
-          console.log(val);
-          console.log(key);
-          console.log(number);
-
-          atividades.push(val);
-          }
-          resolve(atividades);
-      });    
+  obterAtividades() {
+    return new Promise((resolve, reject) => {
+      this.storage.get('tarefas').then((val:Array<Tarefa>)=>{
+        resolve(val); 
+      });
     });
   }
 
