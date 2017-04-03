@@ -34,7 +34,7 @@ export class AddTaskPage {
   adiciona() {
 
     this.storage.get('tarefas').then((val: Array<Tarefa>) => {
-      if (val.length != 0) {
+      if (val != null) {
         console.log('Puxou:');
         console.log(val);
         this.tarefas = val;

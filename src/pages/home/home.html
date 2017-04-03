@@ -1,14 +1,14 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Atividades
+      Simple ToDo
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <ion-item *ngFor="let atividade of atividades">
+  <ion-item *ngFor="let atividade of atividades;let item = index">
     
     <ion-card>
       <ion-card-header>
@@ -18,7 +18,7 @@
         {{atividade.texto}}
 
       <p>{{atividade.data}} {{atividade.horario}}</p>
-      <button ion-button full>Concluir</button>
+      <button ion-button full (click)="conclui(index)">Concluir</button>
       </ion-card-content>         
     </ion-card>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage'
 
 import { AddTaskPage } from '../add-task/add-task';
@@ -14,8 +14,7 @@ export class HomePage {
 
   atividades: Array<Tarefa>;
 
-  constructor(public navCtrl: NavController, public storage: Storage) {
-
+  constructor(public navCtrl: NavController, public storage: Storage, public toast: ToastController) {
     this.obterAtividades().then((val:Array<Tarefa>) => {
       this.atividades = val;
     });
@@ -31,6 +30,16 @@ export class HomePage {
     this.navCtrl.push(AddTaskPage);
   }
 
+  conclui(posicao:number){
+    this.toast.create({
+      message: "Atividade removida",
+      duration: 3000,
+      position: 'top'
+    }).present();
+    this.atividades.splice(posicao,1);
+    this.storage.set('tarefas', this.atividades);
+  }
+
   obterAtividades() {
     return new Promise((resolve, reject) => {
       this.storage.get('tarefas').then((val:Array<Tarefa>)=>{
@@ -38,5 +47,4 @@ export class HomePage {
       });
     });
   }
-
 }
