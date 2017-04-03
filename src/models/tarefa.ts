@@ -1,4 +1,4 @@
-class Tarefa {
+export class Tarefa {
 
     public titulo: String;
     public texto: String;
