@@ -18,7 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
   imports: [
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
-      name: '__mydb',
+      name: 'todoDb',
       driverOrder : ['indexeddb', 'sqlite', 'websql']
     })
   ],
